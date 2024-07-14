@@ -4,7 +4,7 @@ Python Handbook
 
 Introduction
 --------
-**Welcome to python handbook!
+**Welcome to my python handbook!
 This handbook is a complete collection of Python tips and topics in a "learning by example" approach and I hope it is useful.**
 
 ### What is Python?
