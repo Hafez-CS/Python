@@ -940,6 +940,7 @@ Operators
 Lists
 --------
 ![Monty Python](https://files.realpython.com/media/Lists-and-Tuples-in-Python_Watermarked.4d655c81a78b.jpg)
+**Python's list is a flexible, versatile, powerful, and popular built-in data type. It allows you to create variable-length and mutable sequences of objects. In a list, you can store objects of any type. You can also mix objects of different types within the same list, although list elements often share the same type.**
 ```python
 mylist = ["apple", "banana", "cherry"]
 ```
@@ -1175,6 +1176,7 @@ print(cars)
 Tuples
 ---------
 ![Monty Python](https://files.realpython.com/media/Pythons-tuple-Built-in-Data-Type-A-Deep-Dive-with-Examples_Watermarked.e85efb14c955.jpg)
+**Python tuples are a type of data structure that is very similar to lists. The main difference between the two is that tuples are immutable, meaning they cannot be changed once they are created. This makes them ideal for storing data that should not be modified, such as database records.**
 * **`count()`	Returns the number of times a specified value occurs in a tuple.**
 * **`index()`	Searches the tuple for a specified value and returns the position of where it was found.**
 
@@ -1228,6 +1230,7 @@ print(tuple3)
 Sets
 ----
 ![Monty Python](https://files.realpython.com/media/Sets-in-Python_Watermarked.cd8d2e9563c3.jpg)
+**A set is a data collection type used in Python for storing multiple items in a single variable. Sets in Python are unordered and, as such, are not always consistent in the order they get returned. Furthermore, items in the set are immutable — ie. cannot be changed.**
 ```python
 myset = {"apple", "banana", "cherry"}
 ```
