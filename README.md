@@ -2631,6 +2631,7 @@ if __name__ == "__main__":
 lambda
 --------
 ![Monty Python](https://files.realpython.com/media/How-to-Use-Python-Lambda-Functions_Watermarked.2afa4f5ea5d4.jpg)
+**lambda is a keyword in Python for defining the anonymous function. argument(s) is a placeholder, that is a variable that will be used to hold the value you want to pass into the function expression. A lambda function can have multiple variables depending on what you want to achieve.**
 ```python
 x = lambda a : a + 10
 print(x(5))
