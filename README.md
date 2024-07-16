@@ -3068,6 +3068,10 @@ print(math.isclose(1.233, 1.233000001))
 JSON
 ------
 ![Monty Python](https://files.realpython.com/media/Working-With-JSON-Data-in-Python_Watermarked.66a8fdcb8859.jpg)
+**JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays. It is a commonly used data format with diverse uses in electronic data interchange, including that of web applications with servers.**
+
+**In Python, why should one use JSON scheme instead of a dictionary?It is apples vs. oranges comparison: JSON is a data format (a string), Python dictionary is a data structure (in-memory object).
+If you need to exchange data between different (perhaps even non-Python) processes then you could use JSON format to serialize your Python dictionary.**
 ```python
 import json
 # some JSON:
