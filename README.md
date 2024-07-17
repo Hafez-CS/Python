@@ -6773,10 +6773,8 @@ MySQL
 ----
 ![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/MySQL-and-Python_Watermarked.4353d1d57493.jpg)
 * **for the first download MySQL and run it.**
-* **or use phpmyadmin and run it - you open phpmyadmin in the web and write code or use options in the web.**
+* **or use phpmyadmin and run it - you can open phpmyadmin in the web and write code or use options in the web.**
 * **pip install mysql-connector-python**
-* **https://www.w3schools.com/sql/default.asp**
-* **https://www.w3schools.com/mysql/default.asp**
 
 ### database 1
 ```python
