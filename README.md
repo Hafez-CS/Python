@@ -4751,6 +4751,13 @@ Matplotlib
 ------
 ![Monty Python](https://files.realpython.com/media/Python_Plotting_With_Matplotlib_Watermark.610acdacc476.jpg)
 
+**The plot() function is used to draw points (markers) in a diagram.**
+**By default, the plot() function draws a line from point to point.**
+**The function takes parameters for specifying points in the diagram.**
+**Parameter 1 is an array containing the points on the x-axis.**
+**Parameter 2 is an array containing the points on the y-axis.**
+**If we need to plot a line from (1, 3) to (8, 10), we have to pass two arrays [1, 8] and [3, 10] to the plot function.**
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -4762,13 +4769,6 @@ plt.plot(xpoints, ypoints)
 plt.show()
 ```
 ![Figure_1](https://github.com/Hafez-CS/Python-Handbook/assets/151014739/57e266ef-a403-4b19-aaa7-8d3eb7ac4351)
-
-**The plot() function is used to draw points (markers) in a diagram.**
-**By default, the plot() function draws a line from point to point.**
-**The function takes parameters for specifying points in the diagram.**
-**Parameter 1 is an array containing the points on the x-axis.**
-**Parameter 2 is an array containing the points on the y-axis.**
-**If we need to plot a line from (1, 3) to (8, 10), we have to pass two arrays [1, 8] and [3, 10] to the plot function.**
 
 ```python
 import matplotlib.pyplot as plt
