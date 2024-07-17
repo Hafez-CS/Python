@@ -5444,8 +5444,9 @@ Table
 ```python
 # $ pip3 install tabulate
 
+import tabulate
 table = [["Sun",696000,1989100000],["Earth",6371,5973.6],["Moon",1737,73.5],["Mars",3390,641.85]]
-print(tabulate(table))
+print(tabulate.tabulate(table))
 
 >> -----  ------  -------------
    Sun    696000   1.9891e+09
@@ -5456,7 +5457,8 @@ print(tabulate(table))
 ```
 
 ```python
-print(tabulate(table, headers=["Planet","R (km)", "mass (x 10^29 kg)"]))
+import tabulate
+print(tabulate.tabulate(table, headers=["Planet","R (km)", "mass (x 10^29 kg)"]))
 
 >> Planet      R (km)    mass (x 10^29 kg)
    --------  --------  -------------------
@@ -5467,7 +5469,8 @@ print(tabulate(table, headers=["Planet","R (km)", "mass (x 10^29 kg)"]))
 ```
 
 ```python
-print(tabulate([["Name","Age"],["Alice",24],["Bob",19]],headers="firstrow"))  # If headers="firstrow", then the first row of data is used:
+import tabulate
+print(tabulate.tabulate([["Name","Age"],["Alice",24],["Bob",19]],headers="firstrow"))  # If headers="firstrow", then the first row of data is used:
 
 >> Name      Age
    ------  -----
@@ -5476,7 +5479,8 @@ print(tabulate([["Name","Age"],["Alice",24],["Bob",19]],headers="firstrow"))  # 
 ```
 
 ```python
-print(tabulate({"Name": ["Alice", "Bob"],"Age": [24, 19]}, headers="keys")) # If headers="keys", then the keys of a dictionary/dataframe, or column indices are used
+import tabulate
+print(tabulate.tabulate({"Name": ["Alice", "Bob"],"Age": [24, 19]}, headers="keys")) # If headers="keys", then the keys of a dictionary/dataframe, or column indices are used
 
 >>   Age  Name
    -----  ------
@@ -5489,7 +5493,8 @@ To add a similar column to any other type of table, pass showindex="always" or s
 To suppress row indices for all types of data, pass showindex="never" or showindex=False. 
 To add a custom row index column, pass showindex=rowIDs, where rowIDs is some iterable:**
 ```python
-print(tabulate([["F",24],["M",19]], showindex="always"))
+import tabulate
+print(tabulate.tabulate([["F",24],["M",19]], showindex="always"))
 >> -  -  --
    0  F  24
    1  M  19
@@ -5573,9 +5578,10 @@ print(tabulate([["F",24],["M",19]], showindex="always"))
 
 **plain tables do not use any pseudo-graphics to draw lines:**
 ```python
+import tabulate
 table = [["spam",42],["eggs",451],["bacon",0]]
 headers = ["item", "qty"]
-print(tabulate(table, headers, tablefmt="plain"))
+print(tabulate.tabulate(table, headers, tablefmt="plain"))
 
 >> item      qty
    spam       42
@@ -5586,7 +5592,7 @@ print(tabulate(table, headers, tablefmt="plain"))
 
 **simple is the default format (the default may change in future versions). It corresponds to simple_tables in Pandoc Markdown extensions:**
 ```python
-print(tabulate(table, headers, tablefmt="simple"))
+print(tabulate.tabulate(table, headers, tablefmt="simple"))
 
 >> item      qty
    ------  -----
@@ -5598,7 +5604,7 @@ print(tabulate(table, headers, tablefmt="simple"))
 
 **github follows the conventions of GitHub flavored Markdown. It corresponds to the pipe format without alignment colons:**
 ```python
-print(tabulate(table, headers, tablefmt="github"))
+print(tabulate.tabulate(table, headers, tablefmt="github"))
 
 >> | item   | qty   |
    |--------|-------|
@@ -5610,7 +5616,7 @@ print(tabulate(table, headers, tablefmt="github"))
 
 **grid is like tables formatted by Emacs' table.el package. It corresponds to grid_tables in Pandoc Markdown extensions:**
 ```python
-print(tabulate(table, headers, tablefmt="grid"))
+print(tabulate.tabulate(table, headers, tablefmt="grid"))
 
 >> +--------+-------+
    | item   |   qty |
@@ -5626,7 +5632,7 @@ print(tabulate(table, headers, tablefmt="grid"))
 
 **simple_grid draws a grid using single-line box-drawing characters:**
 ```python
-print(tabulate(table, headers, tablefmt="simple_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="simple_grid"))
 
 >> ┌────────┬───────┐
    │ item   │   qty │
@@ -5642,7 +5648,7 @@ print(tabulate(table, headers, tablefmt="simple_grid"))
 
 **rounded_grid draws a grid using single-line box-drawing characters with rounded corners:**
 ```python
-print(tabulate(table, headers, tablefmt="rounded_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="rounded_grid"))
 
 >> ╭────────┬───────╮
    │ item   │   qty │
@@ -5658,7 +5664,7 @@ print(tabulate(table, headers, tablefmt="rounded_grid"))
 
 **heavy_grid draws a grid using bold (thick) single-line box-drawing characters:**
 ```python
-print(tabulate(table, headers, tablefmt="heavy_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="heavy_grid"))
 
 >> ┏━━━━━━━━┳━━━━━━━┓
    ┃ item   ┃   qty ┃
@@ -5674,7 +5680,7 @@ print(tabulate(table, headers, tablefmt="heavy_grid"))
 
 **mixed_grid draws a grid using a mix of light (thin) and heavy (thick) lines box-drawing characters:**
 ```python
-print(tabulate(table, headers, tablefmt="mixed_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="mixed_grid"))
 
 >> ┍━━━━━━━━┯━━━━━━━┑
    │ item   │   qty │
@@ -5690,7 +5696,7 @@ print(tabulate(table, headers, tablefmt="mixed_grid"))
 
 **double_grid draws a grid using double-line box-drawing characters:**
 ```python
-print(tabulate(table, headers, tablefmt="double_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="double_grid"))
 
 >> ╔════════╦═══════╗
    ║ item   ║   qty ║
@@ -5706,7 +5712,7 @@ print(tabulate(table, headers, tablefmt="double_grid"))
 
 **fancy_grid draws a grid using a mix of single and double-line box-drawing characters:**
 ```python
-print(tabulate(table, headers, tablefmt="fancy_grid"))
+print(tabulate.tabulate(table, headers, tablefmt="fancy_grid"))
 
 >> ╒════════╤═══════╕
    │ item   │   qty │
@@ -5722,7 +5728,7 @@ print(tabulate(table, headers, tablefmt="fancy_grid"))
 
 **outline is the same as the grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="outline"))
+print(tabulate.tabulate(table, headers, tablefmt="outline"))
 
 >> +--------+-------+
    | item   |   qty |
@@ -5736,7 +5742,7 @@ print(tabulate(table, headers, tablefmt="outline"))
 
 **simple_outline is the same as the simple_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="simple_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="simple_outline"))
 
 >> ┌────────┬───────┐
    │ item   │   qty │
@@ -5750,7 +5756,7 @@ print(tabulate(table, headers, tablefmt="simple_outline"))
 
 **rounded_outline is the same as the rounded_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="rounded_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="rounded_outline"))
 
 >> ╭────────┬───────╮
    │ item   │   qty │
@@ -5764,7 +5770,7 @@ print(tabulate(table, headers, tablefmt="rounded_outline"))
 
 **heavy_outline is the same as the heavy_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="heavy_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="heavy_outline"))
 
 >> ┏━━━━━━━━┳━━━━━━━┓
    ┃ item   ┃   qty ┃
@@ -5778,7 +5784,7 @@ print(tabulate(table, headers, tablefmt="heavy_outline"))
 
 **mixed_outline is the same as the mixed_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="mixed_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="mixed_outline"))
 
 >> ┍━━━━━━━━┯━━━━━━━┑
    │ item   │   qty │
@@ -5792,7 +5798,7 @@ print(tabulate(table, headers, tablefmt="mixed_outline"))
 
 **double_outline is the same as the double_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="double_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="double_outline"))
 
 >> ╔════════╦═══════╗
    ║ item   ║   qty ║
@@ -5806,7 +5812,7 @@ print(tabulate(table, headers, tablefmt="double_outline"))
 
 **fancy_outline is the same as the fancy_grid format but doesn't draw lines between rows:**
 ```python
-print(tabulate(table, headers, tablefmt="fancy_outline"))
+print(tabulate.tabulate(table, headers, tablefmt="fancy_outline"))
 
 >> ╒════════╤═══════╕
    │ item   │   qty │
@@ -5820,7 +5826,7 @@ print(tabulate(table, headers, tablefmt="fancy_outline"))
 
 **presto is like tables formatted by Presto cli:**
 ```python
-print(tabulate(table, headers, tablefmt="presto"))
+print(tabulate.tabulate(table, headers, tablefmt="presto"))
 
 >> item   |   qty
   --------+-------
@@ -5832,7 +5838,7 @@ print(tabulate(table, headers, tablefmt="presto"))
 
 **pretty attempts to be close to the format emitted by the PrettyTables library:**
 ```python
-print(tabulate(table, headers, tablefmt="pretty"))
+print(tabulate.tabulate(table, headers, tablefmt="pretty"))
 
 >> +-------+-----+
    | item  | qty |
@@ -5846,7 +5852,7 @@ print(tabulate(table, headers, tablefmt="pretty"))
 
 **psql is like tables formatted by Postgres' psql cli:**
 ```python
-print(tabulate(table, headers, tablefmt="psql"))
+print(tabulate.tabulate(table, headers, tablefmt="psql"))
 
 >> +--------+-------+
    | item   |   qty |
@@ -5860,7 +5866,7 @@ print(tabulate(table, headers, tablefmt="psql"))
 
 **pipe follows the conventions of PHP Markdown Extra extension. It corresponds to pipe_tables in Pandoc. This format uses colons to indicate column alignment:**
 ```python
-print(tabulate(table, headers, tablefmt="pipe"))
+print(tabulate.tabulate(table, headers, tablefmt="pipe"))
 
 >> | item   |   qty |
    |:-------|------:|
@@ -5872,7 +5878,7 @@ print(tabulate(table, headers, tablefmt="pipe"))
 
 **asciidoc formats data like a simple table of the AsciiDoctor format:**
 ```python
-print(tabulate(table, headers, tablefmt="asciidoc"))
+print(tabulate.tabulate(table, headers, tablefmt="asciidoc"))
 
 >> [cols="8<,7>",options="header"]
    |====
@@ -5886,7 +5892,7 @@ print(tabulate(table, headers, tablefmt="asciidoc"))
 
 **orgtbl follows the conventions of Emacs org-mode, and is editable also in the minor orgtbl-mode. Hence its name:**
 ```python
-print(tabulate(table, headers, tablefmt="orgtbl"))
+print(tabulate.tabulate(table, headers, tablefmt="orgtbl"))
 
 >> | item   |   qty |
    |--------+-------|
@@ -5898,7 +5904,7 @@ print(tabulate(table, headers, tablefmt="orgtbl"))
 
 **jira follows the conventions of Atlassian Jira markup language:**
 ```python
-print(tabulate(table, headers, tablefmt="rst"))
+print(tabulate.tabulate(table, headers, tablefmt="rst"))
 
 >> ======  =====
    item      qty
@@ -5912,7 +5918,7 @@ print(tabulate(table, headers, tablefmt="rst"))
 
 **mediawiki format produces a table markup used in Wikipedia and on other MediaWiki-based sites:**
 ```python
-print(tabulate(table, headers, tablefmt="mediawiki"))
+print(tabulate.tabulate(table, headers, tablefmt="mediawiki"))
 
 >> {| class="wikitable" style="text-align: left;"
    |+ <!-- caption -->
@@ -5930,7 +5936,7 @@ print(tabulate(table, headers, tablefmt="mediawiki"))
 
 **moinmoin format produces a table markup used in MoinMoin wikis:**
 ```python
-print(tabulate(table, headers, tablefmt="moinmoin"))
+print(tabulate.tabulate(table, headers, tablefmt="moinmoin"))
 
 >> || ''' item   ''' || ''' quantity   ''' ||
    ||  spam    ||  41.999      ||
@@ -5941,7 +5947,7 @@ print(tabulate(table, headers, tablefmt="moinmoin"))
 
 **youtrack format produces a table markup used in Youtrack tickets:**
 ```python
-print(tabulate(table, headers, tablefmt="youtrack"))
+print(tabulate.tabulate(table, headers, tablefmt="youtrack"))
 
 >> ||  item    ||  quantity   ||
    |   spam    |  41.999      |
@@ -5952,7 +5958,7 @@ print(tabulate(table, headers, tablefmt="youtrack"))
 
 **textile format produces a table markup used in Textile format:**
 ```python
-print(tabulate(table, headers, tablefmt="textile"))
+print(tabulate.tabulate(table, headers, tablefmt="textile"))
 
 >> |_.  item   |_.   qty |
    |<. spam    |>.    42 |
@@ -5963,7 +5969,7 @@ print(tabulate(table, headers, tablefmt="textile"))
 
 **html produces standard HTML markup as an html.escape'd str with a .repr_html method so that Jupyter Lab and Notebook display the HTML and a .str property so that the raw HTML remains accessible. unsafehtml table format can be used if an unescaped HTML is required:**
 ```python
-print(tabulate(table, headers, tablefmt="html"))
+print(tabulate.tabulate(table, headers, tablefmt="html"))
 
 >> <table>
    <tbody>
@@ -5978,7 +5984,7 @@ print(tabulate(table, headers, tablefmt="html"))
 
 **latex format creates a tabular environment for LaTeX markup, replacing special characters like _ or \ to their LaTeX correspondents:**
 ```python
-print(tabulate(table, headers, tablefmt="latex"))
+print(tabulate.tabulate(table, headers, tablefmt="latex"))
 
 >> \begin{tabular}{lr}
    \hline
