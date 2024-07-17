@@ -4298,6 +4298,8 @@ print(myEntry)
 Collections
 ------
 ![Monty Python](https://files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg)
+**The collection Module in Python provides different types of containers. A Container is an object that is used to store different objects and provide a way to access the contained objects and iterate over them. Some of the built-in containers are Tuple, List, Dictionary, etc.**
+
 ```python
 from collections import Counter  
 # With sequence of items   
