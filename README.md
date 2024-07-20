@@ -3192,57 +3192,54 @@ Try-Except
 * **`finally`	block lets you execute code, regardless of the result of the try- and except blocks.**
 
 ```python
-try:
-  print(x)
-except:
-  print("An exception occurred")
->> "An exception occurred"
+def divide(x, y):
+    try:
+        # Floor Division : Gives only Fractional Part as Answer
+        result = x // y
+        print("Yeah ! Your answer is :", result)
+    except ZeroDivisionError:
+        print("Sorry ! You are dividing by zero ")
+ 
+
+divide(1, 1)
+>> "Yeah ! Your answer is : 1"
+
+divide(1, 0)
+>> "Sorry ! You are dividing by zero"
 ```
 
 ```python
-try:
-  print(x)
-except NameError:
-  print("Variable x is not defined")
-except:
-  print("Something else went wrong")
->> "Variable x is not defined"
+def AbyB(a , b):
+    try:
+        c = ((a+b) // (a-b))
+    except ZeroDivisionError:
+        print ("a/b result in 0")
+    else:
+        print (c)
+
+
+AbyB(2.0, 3.0)
+>> -5.0
+AbyB(3.0, 3.0)
+>> "a/b result in 0"
 ```
 
 ```python
-try:
-  print("Hello")
-except:
-  print("Something went wrong")
-else:
-  print("Nothing went wrong")
->> "Hello"
->> "Nothing went wrong"
-```
+try: 
+    k = 5//0 # raises divide by zero exception. 
+    print(k) 
+    
+except ZeroDivisionError:   # handles zerodivision exception     
+    print("Can't divide by zero") 
+        
+finally: 
+    # this block is always executed  
+    # regardless of exception generation. 
+    print('This is always executed')  
 
-```python
-try:
-  print(x)
-except:
-  print("Something went wrong")
-finally:
-  print("The 'try except' is finished")
->> "Something went wrong"
->> "The 'try except' is finished"
-```
 
-```python
-try:
-  f = open("demofile.txt")
-  try:
-    f.write("Lorum Ipsum")
-  except:
-    print("Something went wrong when writing to the file")
-  finally:
-    f.close()
-except:
-  print("Something went wrong when opening the file")
->> "Something went wrong when opening the file"
+>> "Can't divide by zero"
+>> "This is always executed" 
 ```
 
 
