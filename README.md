@@ -4069,6 +4069,14 @@ print(random.uniform(20, 60))
 Enum
 ------
 ![Monty Python](https://files.realpython.com/media/Build-Enumerations-With-Pythons-enum_Watermarked.bbcd46a82f58.jpg)
+**Some programming languages, like Java and C++, 
+include syntax that supports a data type known as enumerations, 
+or just enums. This data type allows you to create sets of 
+semantically related constants that you can access through the enumeration itself. 
+Python doesn't have a dedicated syntax for enums. However, 
+the Python standard library has an enum module that supports 
+enumerations through the Enum class.**
+
 **for first this is a normal calss with normal ability :**
 ```python
 class Season(Enum):
@@ -4140,9 +4148,99 @@ else:
 >> "Lions and cat are different"
 ```
 
+```python
+from enum import Enum
+class Day(Enum):
+     MONDAY = 1
+     TUESDAY = 2
+     WEDNESDAY = 3
+     THURSDAY = 4
+     FRIDAY = 5
+     SATURDAY = 6
+     SUNDAY = 7
+
+list(Day)
+>> [
+      <Day.MONDAY: 1>,
+      <Day.TUESDAY: 2>,
+      <Day.WEDNESDAY: 3>,
+      <Day.THURSDAY: 4>,
+      <Day.FRIDAY: 5>,
+      <Day.SATURDAY: 6>,
+      <Day.SUNDAY: 7>
+   ]
+
+type(Day.MONDAY)
+>> <enum 'Day'>
+```
+
+```python
+from enum import Enum
+
+class Season(Enum):
+    WINTER, SPRING, SUMMER, FALL = range(1, 5)
+
+
+list(Season)
+>> [
+     <Season.WINTER: 1>,
+     <Season.SPRING: 2>,
+     <Season.SUMMER: 3>,
+     <Season.FALL: 4>
+   ]
+```
+
+```python
+from enum import Enum
+
+HTTPStatusCode = Enum(
+    value="HTTPStatusCode",
+    names=[
+         ("OK", 200),
+         ("CREATED", 201),
+         ("BAD_REQUEST", 400),
+         ("NOT_FOUND", 404),
+         ("SERVER_ERROR", 500),],
+     )
+
+list(HTTPStatusCode)
+>> [
+     <HTTPStatusCode.OK: 200>,
+     <HTTPStatusCode.CREATED: 201>,
+     <HTTPStatusCode.BAD_REQUEST: 400>,
+     <HTTPStatusCode.NOT_FOUND: 404>,
+     <HTTPStatusCode.SERVER_ERROR: 500>
+  ]
+```
+
+```python
+from enum import auto, Enum
+
+class Day(Enum):
+     MONDAY = auto()
+     TUESDAY = auto()
+     WEDNESDAY = 3
+     THURSDAY = auto()
+     FRIDAY = auto()
+     SATURDAY = auto()
+     SUNDAY = 7
+
+list(Day)
+>> [
+     <Day.MONDAY: 1>,
+     <Day.TUESDAY: 2>,
+     <Day.WEDNESDAY: 3>,
+     <Day.THURSDAY: 4>,
+     <Day.FRIDAY: 5>,
+     <Day.SATURDAY: 6>,
+     <Day.SUNDAY: 7>
+  ]
+```
+
 
 System
 ----
+
 ```python
 import sys
 print(sys.version)
@@ -4156,9 +4254,6 @@ else:
     print("Age is not less than 18") 
 ```
 
-
-System
-----
 **OS has many Module , and we don't need all of them , so visit this site for all OS Module**
 
 https://www.w3schools.com/python/module_os.asp
