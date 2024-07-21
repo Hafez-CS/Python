@@ -132,6 +132,8 @@ Contents
 
 **&nbsp;&nbsp;&nbsp;**  **43. MySQL :** **&nbsp;**  **[`MySQL`](#mysql)**
 
+**&nbsp;&nbsp;&nbsp;**  **44. Restrictions on Input :** **&nbsp;**  **[`Restrictions-on-Input`](#restrictions-on-input)**
+
 
 
 Home
@@ -7875,4 +7877,54 @@ for x in mycursor:
    (3, 'Antonio Moreno Taquería', 'Antonio Moreno', 'Mataderos 2312', 'México D.F.', '05023', 'Mexico')
    (4, 'Around the Horn', 'Thomas Hardy', '120 Hanover Sq.', 'London', 'WA1 1DP', 'UK')
    (5, 'Berglunds snabbköp', 'Christina Berglund', 'Berguvsvägen 8', 'Luleå', 'S-958 22', 'Sweden') 
+```
+
+
+Restrictions-on-Input
+----
+![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/How-to-Read-User-Input-from-the-Keyboard_Watermarked.97e41c4b8491.jpg)
+**Control Inputs**
+
+**just number :**
+```python
+import pyinputplus as pyip
+response = pyip.inputNum("enter a number : ")  
+
+response = pyip.inputNum('Enter num: ', min=4) # Input must be at minimum 4
+
+response = pyip.inputNum('Enter num: ', greaterThan=4) # Number must be greater than 4.
+
+response = pyip.inputNum('Enter num: ',  min=4, lessThan=6) # Number must be at minimum 4 and Number must be less than 6.
+
+response = pyip.inputNum('Enter num: ',  blank=True) # blank can be answer
+```
+
+**sentences :**
+```python
+import pyinputplus as pyip
+response = pyip.inputStr("enter something : ") 
+```
+
+**just yes/no :**
+```python
+import pyinputplus as pyip
+response = pyip.inputYesNo("yes or no : ") 
+```
+
+**just true/false :**
+```python
+import pyinputplus as pyip
+response = pyip.inputBool("true or flase : ") 
+```
+
+**just email address :**
+```python
+import pyinputplus as pyip
+response = pyip.inputEmail("enter your email address : ") 
+```
+
+**password :**
+```python
+import pyinputplus as pyip
+response = pyip.inputPassword("enter password : ") 
 ```
