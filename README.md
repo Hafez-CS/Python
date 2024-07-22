@@ -1083,6 +1083,17 @@ print(list3)
 >> ['a', 'b', 'c', 1, 2, 3]
 ```
 
+```python
+a = [0] * 6
+print(a)
+>> [0, 0, 0, 0, 0, 0]
+```
+
+```python
+[1] * 7
+>> [1, 1, 1, 1, 1, 1, 1]
+```
+
 ### All List methods :
 **.append() (Adds an element at the end of the list)**
 ```python
