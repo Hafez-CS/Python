@@ -4256,9 +4256,52 @@ else:
     print("Age is not less than 18") 
 ```
 
-**OS has many Module , and we don't need all of them , so visit this site for all OS Module**
+```python
+import sys
+print(sys.modules)
+```
 
-https://www.w3schools.com/python/module_os.asp
+```python
+"""
+sys.argv returns a list of command line arguments passed to a Python script. 
+The item at index 0 in this list is always the name of the script. 
+The rest of the arguments are stored at the subsequent indices.
+"""
+import sys
+print("You entered: ",sys.argv[1], sys.argv[2], sys.argv[3])
+
+>>> C:\python36> python test.py Python C# Java
+>> "You entered: Python C# Java"
+```
+
+```python
+"""
+This is an environment variable that is a search path for all Python modules.
+"""
+import sys
+
+print(sys.path)
+```
+
+```python
+"""
+This attribute displays a string containing the version number of the current Python interpreter.
+"""
+
+import sys
+
+print(sys.version) 
+```
+
+```python
+"""
+windows
+"""
+
+import sys
+
+print(sys.platform)
+```
 
 
 Path
