@@ -6916,6 +6916,8 @@ OS
 ----
 **To fully learn the OS : https://www.w3schools.com/python/module_os.asp**
 
+**Python has a built-in os module with methods for interacting with the operating system, like creating files and directories, management of files and directories, input, output, environment variables, process management, etc. The os module has the following set of methods and constants.**
+
 **CMD command**
 ```python
 import os 
