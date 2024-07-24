@@ -6914,7 +6914,39 @@ This is London
 
 OS
 ----
-**os has many built-in , and we don't need all of them , so visit this site for all built-in OS : https://www.w3schools.com/python/module_os.asp**
+**To fully learn the OS : https://www.w3schools.com/python/module_os.asp**
+
+**CMD command**
+```python
+import os 
+ 
+# Using Windows OS command
+cmd = 'notepad'
+# all Windows CMD commands : https://ss64.com/nt/
+ 
+# Using os.system() method
+os.system(cmd)
+```
+
+**Get Current Working Directory**
+```python
+import os 
+ 
+# Using Windows OS command
+cmd = 'notepad'
+# all Windows CMD commands : https://ss64.com/nt/
+ 
+# Using os.system() method
+os.system(cmd)
+```
+
+**Create a file**
+```python
+import os
+
+print(os.getcwd())
+os.mkdir("iran")
+```
 
 
 MySQL
