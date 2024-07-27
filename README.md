@@ -4424,6 +4424,17 @@ filename.exists()
 Pickle
 ------
 ![Monty Python](https://files.realpython.com/media/Object-Serialization-With-the-Python-Pickle-Module_Watermarked.8e4667c2f71f.jpg)
+
+**Python pickle module is used for serializing and de-serializing a Python object structure. 
+Any object in Python can be pickled so that it can be saved on disk. 
+What Pickle does is it “serializes” the object first before writing it to a file. 
+Pickling is a way to convert a Python object (list, dictionary, etc.) into a character stream. 
+The idea is that this character stream contains all the information necessary to reconstruct the object in another Python script. 
+It provides a facility to convert any Python object to a byte stream. 
+This Byte stream contains all essential information about the object so that it can be reconstructed, or “unpickled” and get back into its original form in any Python.**
+
+**this is a normal pickle in this file :**
+
 ```python
 import pickle
 Omkar = {'key' : 'Omkar', 'name' : 'Omkar Pathak', 
@@ -4441,6 +4452,61 @@ b = pickle.dumps(db)
 myEntry = pickle.loads(b)
 print(myEntry)
 >> {'Omkar': {'key': 'Omkar', 'name': 'Omkar Pathak', 'age': 21, 'pay': 40000}, 'Jagdish': {'key': 'Jagdish', 'name': 'Jagdish Pathak', 'age': 50, 'pay': 50000}}
+```
+
+**now we want insert Python objects in an Independent file :**
+
+```python
+import pickle
+ 
+def storeData():
+    # initializing data to be stored in db
+    Omkar = {'key' : 'Omkar', 'name' : 'Omkar Pathak',
+    'age' : 21, 'pay' : 40000}
+    Jagdish = {'key' : 'Jagdish', 'name' : 'Jagdish Pathak',
+    'age' : 50, 'pay' : 50000}
+ 
+    # database
+    db = {}
+    db['Omkar'] = Omkar
+    db['Jagdish'] = Jagdish
+     
+    # Its important to use binary mode
+    dbfile = open('examplePickle', 'ab')
+     
+    # source, destination
+    pickle.dump(db, dbfile)                    
+    dbfile.close()
+ 
+def loadData():
+    # for reading also binary mode is important
+    dbfile = open('examplePickle', 'rb')    
+    db = pickle.load(dbfile)
+    for keys in db:
+        print(keys, '=>', db[keys])
+    dbfile.close()
+ 
+if __name__ == '__main__':
+    storeData()
+    loadData()
+
+>> Omkar => {'key': 'Omkar', 'name': 'Omkar Pathak', 'age': 21, 'pay': 40000}
+   Jagdish => {'key': 'Jagdish', 'name': 'Jagdish Pathak', 'age': 50, 'pay': 50000}
+```
+
+**now we can see :**
+
+```python
+import pickle
+# for reading also binary mode is important
+dbfile = open('examplePickle', 'rb')    
+db = pickle.load(dbfile)
+for keys in db:
+    print(keys, '=>', db[keys])
+dbfile.close()
+
+>> Omkar => {'key': 'Omkar', 'name': 'Omkar Pathak', 'age': 21, 'pay': 40000}
+   Jagdish => {'key': 'Jagdish', 'name': 'Jagdish Pathak', 'age': 50, 'pay': 50000}
 ```
 
 Collections
