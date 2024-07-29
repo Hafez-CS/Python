@@ -4514,11 +4514,11 @@ Collections
 ![Monty Python](https://files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg)
 **The collection Module in Python provides different types of containers. A Container is an object that is used to store different objects and provide a way to access the contained objects and iterate over them. Some of the built-in containers are Tuple, List, Dictionary, etc.**
 
+**Counter :**
 ```python
 from collections import Counter  
 # With sequence of items   
-print(Counter(['B','B','A','B','C','A','B', 
-               'B','A','C'])) 
+print(Counter(['B','B','A','B','C','A','B','B','A','C'])) 
 >> Counter({'B': 5, 'A': 3, 'C': 2})
 
 # with dictionary  
@@ -4531,178 +4531,51 @@ print(Counter(A=3, B=5, C=2))
 ```
 
 ```python
-from collections import OrderedDict  
-    
-print("This is a Dict:\n")  
-d = {}  
-d['a'] = 1
-d['b'] = 2
-d['c'] = 3
-d['d'] = 4
+from collections import Counter
 
->> "This is a Dict:"
-    
-for key, value in d.items():  
-    print(key, value)  
-
->> a 1
-   b 2
-   c 3
-   d 4
-    
-print("\nThis is an Ordered Dict:\n")  
->> "This is an Ordered Dict:"
-od = OrderedDict()  
-od['a'] = 1
-od['b'] = 2
-od['c'] = 3
-od['d'] = 4
-    
-for key, value in od.items():  
-    print(key, value)
-
->> a 1
-   b 2
-   c 3
-   d 4
+Counter("mississippi")
+>> Counter({'i': 4, 's': 4, 'p': 2, 'm': 1})
 ```
 
 ```python
-from collections import OrderedDict  
+from collections import Counter
 
-od = OrderedDict()  
-od['a'] = 1
-od['b'] = 2
-od['c'] = 3
-od['d'] = 4
-    
-print('Before Deleting') 
-for key, value in od.items():  
-    print(key, value)  
+letters = Counter("mississippi")
+letters
+>> Counter({'i': 4, 's': 4, 'p': 2, 'm': 1})
 
->> "Before Deleting"
->> a 1
-   b 2
-   c 3
-   d 4
-      
-# deleting element 
-od.pop('a') 
-  
-# Re-inserting the same 
-od['a'] = 1
-  
-print('\nAfter re-inserting') 
-for key, value in od.items():  
-    print(key, value)
+# Update the counts of m and i
+letters.update(m=3, i=4)
+letters
+>> Counter({'i': 8, 'm': 4, 's': 4, 'p': 2})
 
->> "After re-inserting"
->>  b 2
-    c 3
-    d 4
-    a 1
+# Add a new key-count pair
+letters.update({"a": 2})
+letters
+>> Counter({'i': 8, 'm': 4, 's': 4, 'p': 2, 'a': 2})
+
+# Update with another counter
+letters.update(Counter(["s", "s", "p"]))
+letters
+>> Counter({'i': 8, 's': 6, 'm': 4, 'p': 3, 'a': 2})
 ```
 
 ```python
-from collections import defaultdict  
-     
-# Defining the dict  
-d = defaultdict(int)  
-     
-L = [1, 2, 3, 4, 2, 4, 1, 2]  
-     
-# Iterate through the list  
-# for keeping the count  
-for i in L:  
-    # The default value is 0  
-    # so there is no need to   
-    # enter the key first  
-    d[i] += 1
-         
-print(d)
->> defaultdict(<class 'int'>, {1: 2, 2: 3, 3: 1, 4: 2})
+from collections import Counter
+
+letters = Counter("mississippi")
+letters["a"]
+>> 0
 ```
 
 ```python
-from collections import defaultdict  
-    
-# Defining a dict  
-d = defaultdict(list)  
-    
-for i in range(5):  
-    d[i].append(i)  
-        
-print("Dictionary with values as list:")  
-print(d)
->> "Dictionary with values as list:"
->> defaultdict(<class ‘list’>, {0: [0], 1: [1], 2: [2], 3: [3], 4: [4]})
+from collections import Counter
+
+Counter([1, 1, 2, 3, 3, 3, 4])
+>> Counter({3: 3, 1: 2, 2: 1, 4: 1})
 ```
 
-```python
-from collections import ChainMap  
-
-d1 = {'a': 1, 'b': 2} 
-d2 = {'c': 3, 'd': 4} 
-d3 = {'e': 5, 'f': 6} 
-  
-# Defining the chainmap  
-c = ChainMap(d1, d2, d3)    
-print(c)
->> ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6})
-```
-
-```python
-from collections import ChainMap  
-
-d1 = {'a': 1, 'b': 2} 
-d2 = {'c': 3, 'd': 4} 
-d3 = {'e': 5, 'f': 6} 
-  
-# Defining the chainmap  
-c = ChainMap(d1, d2, d3)  
-     
-# Accessing Values using key name 
-print(c['a']) 
->> 1
-
-# Accessing values using values() 
-# method 
-print(c.values()) 
->> ValuesView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6})) 
-
-# Accessing keys using keys() 
-# method 
-print(c.keys())
->> KeysView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}))
-```
-
-```python
-import collections  
-    
-# initializing dictionaries  
-dic1 = { 'a' : 1, 'b' : 2 }  
-dic2 = { 'b' : 3, 'c' : 4 }  
-dic3 = { 'f' : 5 }  
-    
-# initializing ChainMap  
-chain = collections.ChainMap(dic1, dic2)  
-    
-# printing chainMap  
-print ("All the ChainMap contents are : ")  
-print (chain)  
->> "All the ChainMap contents are : "
->> ChainMap({'a': 1, 'b': 2}, {'b': 3, 'c': 4})
-    
-# using new_child() to add new dictionary  
-chain1 = chain.new_child(dic3)  
-    
-# printing chainMap 
-print ("Displaying new ChainMap : ")  
-print (chain1)
->> "Displaying new ChainMap :" 
-   ChainMap({'f': 5}, {'a': 1, 'b': 2}, {'b': 3, 'c': 4})
-```
-
+**namedtuple :**
 ```python
 from collections import namedtuple 
     
@@ -4724,33 +4597,58 @@ print (S.name)
 ```
 
 ```python
-from collections import namedtuple 
-    
-# Declaring namedtuple()  
-Student = namedtuple('Student',['name','age','DOB'])  
-    
-# Adding values  
-S = Student('Nandini','19','2541997')  
-    
-# initializing iterable   
-li = ['Manjeet', '19', '411997' ]  
-    
-# initializing dict  
-di = { 'name' : "Nikhil", 'age' : 19 , 'DOB' : '1391997' }  
-    
-# using _make() to return namedtuple()  
-print ("The namedtuple instance using iterable is  : ")  
-print (Student._make(li))  
->> "The namedtuple instance using iterable is  : "
-   Student(name='Manjeet', age='19', DOB='411997')
-    
-# using _asdict() to return an OrderedDict()  
-print ("The OrderedDict instance using namedtuple is  : ")  
-print (S._asdict())
->> "The OrderedDict instance using namedtuple is  : "
-   OrderedDict([('name', 'Nandini'), ('age', '19'), ('DOB', '2541997')])
+from collections import namedtuple
+
+# Use a list of strings as field names
+Point = namedtuple("Point", ["x", "y"])
+point = Point(2, 4)
+point
+>> Point(x=2, y=4)
+
+# Access the coordinates
+point.x
+>> 2
+point.y
+>> 4
+point[0]
+>> 2
+
+# Use a generator expression as field names
+Point = namedtuple("Point", (field for field in "xy"))
+Point(2, 4)
+>> Point(x=2, y=4)
+
+# Use a string with comma-separated field names
+Point = namedtuple("Point", "x, y")
+Point(2, 4)
+>> Point(x=2, y=4)
+
+# Use a string with space-separated field names
+Point = namedtuple("Point", "x y")
+Point(2, 4)
+>> Point(x=2, y=4)
 ```
 
+```python
+from collections import namedtuple
+
+# Define default values for fields
+Person = namedtuple("Person", "name job", defaults=["Python Developer"])
+person = Person("Jane")
+person
+>> Person(name='Jane', job='Python Developer')
+
+# Create a dictionary from a named tuple
+person._asdict()
+>> {'name': 'Jane', 'job': 'Python Developer'}
+
+# Replace the value of a field
+person = person._replace(job="Web Developer")
+person
+>> Person(name='Jane', job='Web Developer')
+```
+
+**deque :**
 ```python
 from collections import deque 
     
@@ -4813,6 +4711,161 @@ print ("The deque after deleting from left is : ")
 print (de)
 >> "The deque after deleting from left is : "
    deque([1, 2, 3])
+```
+
+**OrderedDict :**
+```python
+from collections import OrderedDict  
+    
+print("This is a Dict:\n")  
+d = {}  
+d['a'] = 1
+d['b'] = 2
+d['c'] = 3
+d['d'] = 4
+    
+for key, value in d.items():  
+    print(key, value)  
+
+>> "This is a Dict:"
+>> a 1
+   b 2
+   c 3
+   d 4
+```
+
+```python
+from collections import OrderedDict  
+
+print("\nThis is an Ordered Dict:\n")  
+od = OrderedDict()  
+od['b'] = 1
+od['d'] = 2
+od['c'] = 3
+od['a'] = 4
+
+for key, value in od.items():  
+    print(key, value)
+print(od)
+
+>> "This is an Ordered Dict:"
+>> a 1
+   b 2
+   c 3
+   d 4
+```
+
+```python
+from collections import OrderedDict
+
+life_stages = OrderedDict()
+
+life_stages["childhood"] = "0-9"
+life_stages["adolescence"] = "9-18"
+life_stages["adulthood"] = "18-65"
+life_stages["old"] = "+65"
+
+for stage, years in life_stages.items():
+     print(stage, "->", years)
+>> childhood -> 0-9
+>> adolescence -> 9-18
+>> adulthood -> 18-65
+>> old -> +65
+```
+
+**defaultdict :**
+```python
+from collections import defaultdict  
+     
+# Defining the dict  
+d = defaultdict(int)  
+     
+L = [1, 2, 3, 4, 2, 4, 1, 2]  
+     
+# Iterate through the list  
+# for keeping the count  
+for i in L:  
+    # The default value is 0  
+    # so there is no need to   
+    # enter the key first  
+    d[i] += 1
+         
+print(d)
+>> defaultdict(<class 'int'>, {1: 2, 2: 3, 3: 1, 4: 2})
+```
+
+```python
+from collections import defaultdict  
+    
+# Defining a dict  
+d = defaultdict(list)  
+    
+for i in range(5):  
+    d[i].append(i)  
+        
+print("Dictionary with values as list:")  
+print(d)
+>> "Dictionary with values as list:"
+>> defaultdict(<class ‘list’>, {0: [0], 1: [1], 2: [2], 3: [3], 4: [4]})
+```
+
+```python
+from collections import defaultdict
+
+counter = defaultdict(int)
+counter
+>> defaultdict(<class 'int'>, {})
+counter["dogs"]
+>> 0
+counter
+>> defaultdict(<class 'int'>, {'dogs': 0})
+
+counter["dogs"] += 1
+counter["dogs"] += 1
+counter["dogs"] += 1
+counter["cats"] += 1
+counter["cats"] += 1
+counter
+>> defaultdict(<class 'int'>, {'dogs': 3, 'cats': 2})
+```
+
+**ChainMap :**
+```python
+from collections import ChainMap  
+
+d1 = {'a': 1, 'b': 2} 
+d2 = {'c': 3, 'd': 4} 
+d3 = {'e': 5, 'f': 6} 
+  
+# Defining the chainmap  
+c = ChainMap(d1, d2, d3)    
+print(c)
+>> ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6})
+```
+
+```python
+from collections import ChainMap  
+
+d1 = {'a': 1, 'b': 2} 
+d2 = {'c': 3, 'd': 4} 
+d3 = {'e': 5, 'f': 6} 
+  
+# Defining the chainmap  
+c = ChainMap(d1, d2, d3)  
+     
+# Accessing Values using key name 
+print(c['a']) 
+>> 1
+
+# Accessing values using values() 
+# method 
+print(c.values()) 
+>> ValuesView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6})) 
+
+# Accessing keys using keys() 
+# method 
+print(c.keys())
+>> KeysView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}))
 ```
 
 
