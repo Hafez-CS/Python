@@ -4465,12 +4465,26 @@ if not destination.exists():
 ### Create Files : 
 ```python
 from pathlib import Path
-filename = Path("C:\\Users\\NAJAFI\\Desktop\\h.txt")
+filename = Path("C:\\Users\\Name\\Desktop\\h.txt")
 filename.exists()
 >> False
 filename.touch()
 filename.exists()
 >> True
+```
+
+### copy and insert the file :
+```python
+import shutil, os
+from pathlib import Path
+print(p)
+shutil.copy('C:\\Users\\Name\\Desktop\\h.txt','C:\\Users\\Name\\Desktop\\0')
+```
+
+### move file :
+```python
+import shutil
+shutil.move('C:\\Users\\Name\\Desktop\\h.txt','C:\\Users\\Name\\Desktop\\0')
 ```
 
 Pickle
