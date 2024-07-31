@@ -134,6 +134,8 @@ Contents
 
 **&nbsp;&nbsp;&nbsp;**  **44. Restrictions on Input :** **&nbsp;**  **[`Restrictions-on-Input`](#restrictions-on-input)**
 
+**&nbsp;&nbsp;&nbsp;**  **45. openpyxl :** **&nbsp;**  **[`openpyxl`](#openpyxl)**
+
 
 
 Home
@@ -8200,4 +8202,146 @@ response = pyip.inputEmail("enter your email address : ")
 ```python
 import pyinputplus as pyip
 response = pyip.inputPassword("enter password : ") 
+```
+
+
+openpyxl
+----
+![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/openpyxl-Tutorial-How-to-Work-with-Excel-Sheets-in-Python_Watermarked.ff712e4fad41.jpg)
+**A Python library to read/write Excel.**
+
+**sheets' names :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+print(wb.sheetnames) # The workbook's sheets' names.
+```
+
+**Get the value :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb['Sheet1'] # Get a sheet from the workbook.
+print(sheet['A1'].value) # Get the value from the cell.
+print(sheet.cell(row=2, column=1).value)
+
+###############################
+
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb['Sheet1']
+print(tuple(sheet['A1':'A3'])) # Get all cells from A1 to C3.
+```
+
+**change the name of file and copy it :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb.active
+sheet.title = 'Spam Spam Spam'
+wb.save('example_copy.xlsx') # Save the workbook.
+```
+
+**change title sheet :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+wb.sheetnames # It starts with one sheet.
+>> ['Sheet']
+sheet = wb.active
+sheet.title
+>>'Sheet'
+sheet.title = 'Spam Bacon Eggs Sheet' # Change title.
+wb.sheetnames
+>> ['Spam Bacon Eggs Sheet']
+wb.save('h.xlsx') # Save the workbook.
+```
+
+**creat a new sheet :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+wb.sheetnames
+>>['Sheet']
+wb.create_sheet() # Add a new sheet.
+#>> <Worksheet "Sheet1">
+wb.sheetnames
+>> ['Sheet', 'Sheet1']
+# Create a new sheet at index 0.
+wb.create_sheet(index=0, title='First Sheet')
+>> <Worksheet "First Sheet">
+wb.sheetnames
+>> ['First Sheet', 'Sheet', 'Sheet1']
+wb.create_sheet(index=2, title='Middle Sheet')
+>> <Worksheet "Middle Sheet">
+wb.sheetnames
+>> ['First Sheet', 'Sheet', 'Middle Sheet', 'Sheet1']
+wb.save('h.xlsx') # Save the workbook.
+```
+
+**delet sheet :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+wb.sheetnames
+>> ['First Sheet', 'Sheet', 'Middle Sheet', 'Sheet1']
+del wb['Sheet']
+del wb['Sheet1']
+wb.sheetnames
+>> ['First Sheet', 'Sheet']
+wb.save('h.xlsx') # Save the workbook.
+```
+
+**writing :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb['Sheet1']
+sheet['A1'] = 'Hello, world!' # Edit the cell's value.
+sheet['A1'].value
+wb.save('h.xlsx') # Save the workbook.
+```
+
+**Formulas :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb.active
+sheet['A1'] = 200
+sheet['A2'] = 300
+sheet['A3'] = '=SUM(A1:A2)' # Set the formula.
+wb.save('h.xlsx')
+```
+
+**Merging and Unmerging Cells :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb.active
+sheet.merge_cells('A1:D3') # Merge all these cells.
+sheet['A1'] = 'Twelve cells merged together.'
+sheet.merge_cells('C5:D5') # Merge these two cells.
+sheet['C5'] = 'Two merged cells.'
+wb.save('h.xlsx')
+```
+
+**unmerge :**
+```python
+import openpyxl
+
+wb = openpyxl.load_workbook('h.xlsx')
+sheet = wb.active
+sheet.unmerge_cells('A1:D3') # Split these cells up.
+sheet.unmerge_cells('C5:D5')
+wb.save('h.xlsx')
 ```
