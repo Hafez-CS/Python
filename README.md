@@ -134,7 +134,9 @@ Contents
 
 **&nbsp;&nbsp;&nbsp;**  **44. Restrictions on Input :** **&nbsp;**  **[`Restrictions-on-Input`](#restrictions-on-input)**
 
-**&nbsp;&nbsp;&nbsp;**  **45. openpyxl :** **&nbsp;**  **[`openpyxl`](#openpyxl)**
+**&nbsp;&nbsp;&nbsp;**  **45. excel :** **&nbsp;**  **[`excel`](#excel)**
+
+**&nbsp;&nbsp;&nbsp;**  **46. PDF :** **&nbsp;**  **[`PDF`](#pdf)**
 
 
 
@@ -8205,7 +8207,7 @@ response = pyip.inputPassword("enter password : ")
 ```
 
 
-openpyxl
+excel
 ----
 ![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/openpyxl-Tutorial-How-to-Work-with-Excel-Sheets-in-Python_Watermarked.ff712e4fad41.jpg)
 **A Python library to read/write Excel.**
@@ -8344,4 +8346,81 @@ sheet = wb.active
 sheet.unmerge_cells('A1:D3') # Split these cells up.
 sheet.unmerge_cells('C5:D5')
 wb.save('h.xlsx')
+```
+
+
+PDF
+----
+![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/How-to-Work-with-a-PDF-in-Python_Watermarked.dde4bda18f7d.jpg)
+**A Python library to read/edit PDF.**
+
+**read pdf :**
+```python
+import PyPDF2
+pdfFileObj = open('h.pdf', 'rb')
+pdfReader = PyPDF2.PdfReader(pdfFileObj)
+print(len(pdfReader.pages)) # page of pdf
+
+pageObj = pdfReader.pages[0]
+print(pageObj.extract_text()) # text of pfd
+pdfFileObj.close()
+```
+
+**Copying Pages and insert in to new pdf :**
+```python
+import PyPDF2
+pdf1File = open('h.pdf', 'rb')
+pdf2File = open('g.pdf', 'rb')
+
+pdf1Reader = PyPDF2.PdfReader(pdf1File)
+pdf2Reader = PyPDF2.PdfReader(pdf2File)
+
+pdfWriter = PyPDF2.PdfWriter()
+for pageNum in range(len(pdf1Reader.pages)):
+    pageObj = pdf1Reader.pages[pageNum]
+    pdfWriter.add_page(pageObj)
+
+for pageNum in range(len(pdf2Reader.pages)):
+    pageObj = pdf2Reader.pages[pageNum]
+    pdfWriter.add_page(pageObj)
+
+pdfOutputFile = open('z.pdf', 'wb')
+pdfWriter.write(pdfOutputFile)
+pdfOutputFile.close()
+
+pdf1File.close()
+pdf2File.close()
+```
+
+**rotate the page and save to another pdf :**
+```python
+import PyPDF2
+minutesFile = open('z.pdf', 'rb')
+pdf1Reader = PyPDF2.PdfReader(minutesFile)
+page = pdf1Reader.pages[0]
+page.rotate(90)
+
+pdfWriter = PyPDF2.PdfWriter()
+pdfWriter.add_page(page)
+resultPdfFile = open('z.pdf', 'wb')
+pdfWriter.write(resultPdfFile)
+
+resultPdfFile.close()
+minutesFile.close()
+```
+
+**Encrypting PDFs :**
+```python
+import PyPDF2
+pdfFile = open('h.pdf', 'rb')
+pdfReader = PyPDF2.PdfReader(pdfFile)
+pdfWriter = PyPDF2.PdfWriter()
+
+for pageNum in range(len(pdfReader.pages)):
+    pdfWriter.add_page(pdfReader.pages[pageNum])
+
+pdfWriter.encrypt('hafez') # password
+resultPdf = open('h.pdf', 'wb')
+pdfWriter.write(resultPdf)
+resultPdf.close()
 ```
