@@ -138,6 +138,8 @@ Contents
 
 **&nbsp;&nbsp;&nbsp;**  **46. PDF :** **&nbsp;**  **[`PDF`](#pdf)**
 
+**&nbsp;&nbsp;&nbsp;**  **47. Word :** **&nbsp;**  **[`Word`](#word)**
+
 
 
 Home
@@ -8423,4 +8425,87 @@ pdfWriter.encrypt('hafez') # password
 resultPdf = open('h.pdf', 'wb')
 pdfWriter.write(resultPdf)
 resultPdf.close()
+```
+
+
+Word
+----
+**A Python library to edit Word file.**
+
+**read page :**
+```python
+# pip install python-docx
+
+import docx
+
+doc = docx.Document('h.docx')
+print(doc.paragraphs[0].text)
+print(doc.paragraphs[1].text)
+```
+
+**read all pages :**
+```python
+import docx
+
+def getText(filename):
+ doc = docx.Document(filename)
+ fullText = []
+ for para in doc.paragraphs:
+     fullText.append(para.text)
+ return '\n'.join(fullText)
+
+print(getText('h.docx'))
+```
+
+**Writing Word Documents :**
+```python
+import docx
+doc = docx.Document('h.docx')
+doc.add_paragraph('Hello, world!')
+doc.save('h.docx')
+```
+```python
+import docx
+doc = docx.Document('h.docx')
+doc.add_paragraph('Hello world!')
+
+paraObj1 = doc.add_paragraph('This is a second paragraph.')
+paraObj2 = doc.add_paragraph('This is a yet another paragraph.')
+paraObj1.add_run(' This text is being added to the second paragraph.')
+
+doc.save('h.docx')
+```
+```python
+import docx
+
+doc = docx.Document('h.docx')
+doc.add_paragraph('This is on the first page!')
+doc.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE) # enter a page
+doc.add_paragraph('This is on the second page!')
+doc.save('h.docx')
+```
+
+**word convert to pdf :**
+```python
+from docx2pdf import convert
+convert("h.docx", "h.pdf")
+```
+
+**pdf convert to word :**
+```python
+from pdf2docx import Converter
+# Keeping the PDF's location in a separate variable
+pdf_file = "h.pdf"
+
+# Maintaining the Document's path in a separate variable
+docx_file = "h.docx"
+
+# Using the built-in function, convert the PDF file to a document file by saving it in a variable.
+cv = Converter(pdf_file)
+
+# Storing the Document in the variable's initialised path
+cv.convert(docx_file)
+
+# Conversion closure through the function close()
+cv.close()
 ```
