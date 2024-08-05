@@ -140,6 +140,12 @@ Contents
 
 **&nbsp;&nbsp;&nbsp;**  **47. Word :** **&nbsp;**  **[`Word`](#word)**
 
+**&nbsp;&nbsp;&nbsp;**  **48. Time :** **&nbsp;**  **[`Time`](#time)**
+
+**&nbsp;&nbsp;&nbsp;**  **49. Picture :** **&nbsp;**  **[`Picture`](#picture)**
+
+**&nbsp;&nbsp;&nbsp;**  **50. controlling-the-keyboard-and-mouse-with-GUI-automation :** **&nbsp;**  **[`controlling-the-keyboard-and-mouse-with-GUI-automation`](#controlling-the-keyboard-and-mouse-with-GUI-automation)**
+
 
 
 Home
@@ -8508,4 +8514,280 @@ cv.convert(docx_file)
 
 # Conversion closure through the function close()
 cv.close()
+```
+
+Time
+----
+![Monty Python](https://realpython.com/cdn-cgi/image/width=960,format=auto/https://files.realpython.com/media/How-to-Use-the-Python-Time-Module_Watermarked.9de84ed793f2.jpg)
+
+**Calculate time :**
+```python
+import time
+def calcProd():
+    # Calculate the product of the first 100,000 numbers.
+    product = 1
+    for i in range(1, 100000):
+        product = product * i
+    return product
+
+# Calculate the execution time of the function
+startTime = time.time()
+prod = calcProd()
+endTime = time.time()
+
+print('Took %s seconds to calculate.' % (endTime - startTime))
+>> 'Took 4.035247564315796 seconds to calculate.'
+```
+
+**time :**
+```python
+import time
+print(time.ctime())
+>> 'Mon Jun 15 14:00:38 2020'
+thisMoment = time.time()
+print(time.ctime(thisMoment))
+>> 'Mon Jun 15 14:00:45 2020'
+```
+
+**time sleep :**
+```python
+import time
+for i in range(3):
+    print('Tick')
+    time.sleep(1)
+    print('Tock')
+    time.sleep(1)
+
+>> Tick
+   Tock
+   Tick
+   Tock
+   Tick
+   Tock
+```
+
+**time now  :**
+```python
+import datetime
+dt = datetime.datetime.now()
+
+print(dt.year, dt.month, dt.day)
+print(dt.hour, dt.minute, dt.second)
+
+>> 2024 8 5
+   9 39 13
+```
+
+
+Picture
+----
+![Monty Python](https://files.realpython.com/media/Image-Processing-in-Python-With-Pillow_Watermarked.b86d7e55f981.jpg)
+
+**info from pic :**
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+
+print(catIm.size)
+>> (3300, 5100)
+width, height = catIm.size
+
+print(width)
+>> 3300
+print(height)
+>> 5100
+print(catIm.filename)
+>> 'h.png'
+print(catIm.format)
+>> 'PNG'
+print(catIm.format_description)
+>> 'Portable network graphics'
+
+catIm.save('h.jpg')
+```
+
+**Cropping Images :**
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+croppedIm = catIm.crop((335, 345, 565, 560))
+croppedIm.save('a.png')
+```
+
+**Copying and Pasting Images onto Other Images :**
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+catCopyIm = catIm.copy()
+
+faceIm = catIm.crop((335, 345, 565, 560))
+catCopyIm.paste(faceIm, (0, 0))
+catCopyIm.paste(faceIm, (400, 500))
+catCopyIm.save('b.png')
+```
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+faceIm = catIm.crop((200, 500, 500, 500))
+
+catImWidth, catImHeight = catIm.size
+faceImWidth, faceImHeight = faceIm.size
+catCopyTwo = catIm.copy()
+for left in range(0, catImWidth, faceImWidth):
+    for top in range(0, catImHeight, faceImHeight):
+        print(left, top)
+        catCopyTwo.paste(faceIm, (left, top))
+        
+catCopyTwo.save('b.png')
+```
+
+**Rotating and Flipping Images :**
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+catIm.rotate(90).save('b.png')
+catIm.rotate(180).save('b.png')
+catIm.rotate(270).save('b.png')
+```
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+catIm.rotate(6).save('b.png')
+catIm.rotate(6, expand=True).save('b.png')
+```
+```python
+from PIL import Image
+catIm = Image.open('h.png')
+catIm.transpose(Image.FLIP_LEFT_RIGHT).save('b.png')
+catIm.transpose(Image.FLIP_TOP_BOTTOM).save('b.png')
+```
+
+
+controlling-the-keyboard-and-mouse-with-GUI-automation
+----
+
+**Moving the Mouse :**
+```python
+import pyautogui
+for i in range(10): # Move mouse in a square.
+    pyautogui.moveTo(100, 100, duration=0.25)
+    pyautogui.moveTo(200, 100, duration=0.25)
+    pyautogui.moveTo(200, 200, duration=0.25)
+    pyautogui.moveTo(100, 200, duration=0.25)
+```
+```python
+import pyautogui
+for i in range(10):
+    pyautogui.move(100, 0, duration=0.25) # right
+    pyautogui.move(0, 100, duration=0.25) # down
+    pyautogui.move(-100, 0, duration=0.25) # left
+    pyautogui.move(0, -100, duration=0.25) # up
+```
+
+**Get current mouse position :**
+```python
+import pyautogui
+pyautogui.position() 
+```
+
+**click Mouse :**
+```python
+import pyautogui
+pyautogui.click(10, 5) # Move mouse to (10, 5) and click
+pyautogui.click(10, 5)
+```
+
+**Dragging the Mouse :**
+```python
+import pyautogui, time
+time.sleep(5)
+pyautogui.click() # Click to make the window active.
+distance = 300
+change = 20
+while distance > 0:
+      pyautogui.drag(distance, 0, duration=0.2) # Move right.
+      distance = distance - change
+      pyautogui.drag(0, distance, duration=0.2) # Move down.
+      pyautogui.drag(-distance, 0, duration=0.2) # Move left.
+      distance = distance - change
+      pyautogui.drag(0, -distance, duration=0.2) # Move up
+```
+
+**Scrolling the Mouse :**
+```python
+import pyautogui
+pyautogui.scroll(500)
+```
+
+**Sending a String from the Keyboard :**
+```python
+import pyautogui
+pyautogui.click(); pyautogui.write('Hello, world!')
+```
+
+**Keyboard key string :**
+```
+'a', 'b', 'c', 'A', 'B', 'C', '1', '2', '3', '!', '@', '#',....     # The keys for single characters
+'enter'                                                             # The enter key
+'esc'                                                               # The esc key
+'shiftleft', 'shiftright'                                           # The left and right shift keys
+'altleft', 'altright'                                               # The left and right alt keys
+'ctrlleft', 'ctrlright'                                             # The left and right ctrl keys
+'tab'                                                               # The tab key
+'backspace', 'delete'                                               # The backspace and delete keys
+'pageup', 'pagedown'                                                # The page up and page down keys
+'home', 'end'                                                       # The home and end keys
+'up', 'down', 'left', 'right'                                       # The up, down, left, and right arrow keys
+'f1', 'f2', 'f3', ...                                               # The F1 to F12 keys
+'volumemute', 'volumedown', 'volumeup'                              # The mute, volume down, and volume up 
+                                                                      # keys (some keyboards do not have these 
+                                                                      # keys, but your operating system will still 
+                                                                      # be able to understand these simulated 
+                                                                      # keypresses)
+'pause'                                                             # The pause key
+'capslock', 'numlock', 'scrolllock'                                 # The caps lock, num lock, and scroll lock keys
+'insert'                                                            # The ins or insert key
+'printscreen'                                                       # The prtsc or print screen key
+'winleft', 'winright'                                               # The left and right win keys (on Windows)
+'command'                                                           # The Command () key (on macOS)
+'option'                                                            # The option key (on macOS)
+
+# example : pyautogui.keyDown('shift'); pyautogui.press('4'); pyautogui.keyUp('shift')
+```
+
+**summary :**
+```
+import pyautogui
+pyautogui.moveTo(x, y)                     # Moves the mouse cursor to the given x and y coordinates.
+pyautogui.move(xOffset, yOffset)           # Moves the mouse cursor relative to its current position.
+pyautogui.dragTo(x, y)                     # Moves the mouse cursor while the left button is held down.
+pyautogui.drag(xOffset, yOffset)           # Moves the mouse cursor relative to its current position while the left button is held down.
+pyautogui.click(x, y, button)              # Simulates a click (left button by default).
+pyautogui.rightClick()                     # Simulates a right-button click.
+pyautogui.middleClick()                    # Simulates a middle-button click.
+pyautogui.doubleClick()                    # Simulates a double left-button click.
+pyautogui.mouseDown(x, y, button)          # Simulates pressing down the given button at the position x, y.
+pyautogui.mouseUp(x, y, button)            # Simulates releasing the given button at the position x, y.
+pyautogui.scroll(units)                    # Simulates the scroll wheel. A positive argument scrolls up; a negative argument scrolls down.
+pyautogui.write(message)                   # Types the characters in the given message string.
+pyautogui.write([key1, key2, key3])        # Types the given keyboard key strings.
+pyautogui.press(key)                       # Presses the given keyboard key string.
+pyautogui.keyDown(key)                     # Simulates pressing down the given keyboard key.
+pyautogui.keyUp(key)                       # Simulates releasing the given keyboard key.
+pyautogui.hotkey([key1, key2, key3])       # Simulates pressing the given keyboard key strings down in order and then releasing them in reverse order.
+pyautogui.screenshot()                     # Returns a screenshot as an Image object. (See Chapter 19 for information on Image objects.) 
+pyautogui.getActiveWindow()                # These functions return Window objects that can resize and reposition application windows on the desktop.
+pyautogui.getAllWindows()
+pyautogui.getWindowsAt()
+pyautogui.getWindowsWithTitle() 
+pyautogui.getAllTitles()                   # Returns a list of strings of the title bar text of every window on the desktop.
+```
+
+**Displaying Message Boxes :**
+```python
+import pyautogui
+pyautogui.alert('This is a message.', 'Important')
+pyautogui.confirm('Do you want to continue?') # Click Cancel
+pyautogui.prompt("What is your cat's name?")
+pyautogui.password('What is the password?')
 ```
