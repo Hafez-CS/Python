@@ -32,6 +32,8 @@ Python can be treated in a procedural way, an object-oriented way or a functiona
 ### good to know!
 **Python : https://www.python.org/**
 
+**Python packages : https://pypi.org/**
+
 **The Python Standard Library : https://docs.python.org/3/library/index.html**
 
 **VS Code : https://code.visualstudio.com/**
